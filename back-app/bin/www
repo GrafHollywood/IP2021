@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('back-app:server');
 var http = require('http');
-const mysql2 = require('mysql2');
+const connection = require('../mode/db');
 
 /**
  * Get port from environment and store in Express.
@@ -26,7 +26,9 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, () =>{
+  console.log(`http://localhost:${port}`);
+});
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -89,19 +91,3 @@ function onListening() {
     'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-
-//подключение к БД
-const connectionDB = mysql2.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "engineering_project",
-  password: "qwerty123"
-});
-
-connectionDB.connect(function (err) {
-  if (err) {
-    return console.error("Ошибка: " + err.message);
-  } else {
-    console.log("Подключение к серверу MySQL успешно установлено");
-  }
-});
