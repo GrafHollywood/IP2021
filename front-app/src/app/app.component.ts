@@ -8,21 +8,21 @@ import { HttpDbService } from './share/services/http-db.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  valve: Valve = { name: 'init', mainMaterial: 'сталь' };
+  // valve: Valve = { name: 'init', mainMaterial: 'сталь' };
   constructor(private http: HttpDbService) { }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.getValveList();
-    console.log(this.valve);
+    // this.getValveList();
+    // console.log(this.valve);
   }
 
-  async getValveList() {
-    try {
-      this.valve = await this.http.getValveList();
-      console.log(this.valve)
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async getValveList() {
+  //   try {
+  //     this.valve = await this.http.getValveList();
+  //     console.log(this.valve)
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 }

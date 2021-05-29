@@ -5,11 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ValveCardComponent } from './valve-card/valve-card.component';
+import { ValveAddFormComponent } from './valve-add-form/valve-add-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ValveCardComponent
+    ValveCardComponent,
+    ValveAddFormComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,6 @@ export interface Valve {
     partMaterials?: Materials; //материалы отдельных компонентов
     execution?: Execution[]; //исполнения
     environment?: Environment; //рабочая среда
-    typeDrive?: string; //тип привода
-    purpose?: string; //назначение
+    typeDrive: string; //тип привода
+    purpose: string; //назначение
 }
