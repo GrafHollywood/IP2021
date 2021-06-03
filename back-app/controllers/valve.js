@@ -6,12 +6,18 @@ function sqlToValve(sqlValve) {
     return valve;
 }
 
-// /* GET home page. */
+// /* Получить список всех клапанов. */
 exports.getValves = function (req, res) {
-    console.log(req.method);
+    console.log(`${req.method} getValves`);
     connection.query('SELECT * FROM Valve_Model', function (err, results) {
         if (err) console.log(err);
-        res.json(sqlToValve(results));
-        // console.log(results);
+        let valveRes = [];
+        results.forEach(valve => valveRes.push(sqlToValve(valve)));
+        res.json(valveRes);
     });
+}
+
+exports.getTightnessClass = function (req, res) {
+    console.log(`${req.method} getTightnessClass`);
+
 }
