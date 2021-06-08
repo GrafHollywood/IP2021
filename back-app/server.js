@@ -4,13 +4,12 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// }));
 
 
-const valveRouter = require('./routes/valve'); //для адресов /valve
-app.use('/valve', valveRouter);
+const valveRouter = require('./routes/valveRouter'); //для адресов /valve
+const conditionsRouter = require('./routes/conditionsRouter')
+app.use('/api/v1/valve', valveRouter);
+app.use('/api/v1//conditions', conditionsRouter);
 
 // обработка ошибки 404
 app.use(function (req, res, next) {
