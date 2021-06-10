@@ -11,6 +11,7 @@ import { AddValveComponent } from './add-valve/add-valve.component';
 import { AddExecutionComponent } from './add-execution/add-execution.component';
 import { ValveCardComponent } from './valve-card/valve-card.component';
 import { FooterComponent } from './footer/footer.component';
+import { ValvePageComponent } from './valve-page/valve-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent } from './footer/footer.component';
     AddValveComponent,
     AddExecutionComponent,
     ValveCardComponent,
-    FooterComponent
+    FooterComponent,
+    ValvePageComponent
   ],
   imports: [
     BrowserModule,
