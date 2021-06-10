@@ -1,8 +1,10 @@
-<div class="card border p-1 h-100">
-  <div class="col-6">
-    <h3>{{valve.Model}}</h3>
-    <div>{{valve.Main_Material}}</div>
-    <div>{{valve.Pressure}}</div>
+<div class="card ps-2">
+  <div class="row align-items-center">
+    <div class="col-6">
+      <h3>{{valve.Model}}</h3>
+      <p class="card-text">Материал: {{valve.Main_Material}}<br>
+        PN: {{valve.Pressure}}</p>
+    </div>
+    <img src="{{valve.img}}" alt="valve.Model" class="col-6 h-100">
   </div>
-  <img src="{{valve.img}}" alt="valve.Model" class="col-6">
 </div>
