@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ValveShort } from '../interfaces/valve.interface';
 import { ValveHttpService } from '../services/valve-http.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { ValveHttpService } from '../services/valve-http.service';
   styleUrls: ['./valve-list.component.css']
 })
 export class ValveListComponent implements OnInit {
-  valveList = [];
+  valveList: ValveShort[];
   constructor(private httpValve: ValveHttpService) { }
 
   ngOnInit(): void {

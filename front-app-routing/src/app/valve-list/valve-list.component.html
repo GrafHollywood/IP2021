@@ -1,6 +1,6 @@
 <div class="container">
-  <div *ngFor="let valve of valveList">
-    <span>{{valve.Model}}</span>
-    <img src="{{valve.img}}" alt="{{valve.Model}}">
+  <h1 class="m-3">Список всех клапанов</h1>
+  <div class="row">
+    <app-valve-card class="col-4" *ngFor="let valve of valveList" [valve]="valve"></app-valve-card>
   </div>
 </div>

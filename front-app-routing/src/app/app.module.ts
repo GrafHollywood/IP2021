@@ -9,6 +9,8 @@ import { ValveListComponent } from './valve-list/valve-list.component';
 import { MainComponent } from './main/main.component';
 import { AddValveComponent } from './add-valve/add-valve.component';
 import { AddExecutionComponent } from './add-execution/add-execution.component';
+import { ValveCardComponent } from './valve-card/valve-card.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AddExecutionComponent } from './add-execution/add-execution.component';
     ValveListComponent,
     MainComponent,
     AddValveComponent,
-    AddExecutionComponent
+    AddExecutionComponent,
+    ValveCardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
