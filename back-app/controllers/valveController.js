@@ -1,13 +1,8 @@
 const Valve = require("../models/valve");
 const connection = require("../mode/connection");
 
-function sqlToValve(sqlValve) {
-    let valve = new Valve(sqlValve.Model, '', sqlValve.Type_drive, sqlValve.Purpose);
-    return valve;
-}
-
 /*
-../valve
+GET ../valve
 */
 exports.getValves = function (req, res) {
     console.log(`${req.method} getValves`);
@@ -15,6 +10,7 @@ exports.getValves = function (req, res) {
     JOIN materials ON materials.Model = valve_model.Model
     JOIN work_env ON work_env.Model = valve_model.Model
     JOIN documents ON documents.Model = valve_model.Model`;
+
     connection.query(query, function (err, results) {
         if (err) console.log(err);
         // let valveRes = [];
@@ -22,10 +18,46 @@ exports.getValves = function (req, res) {
         res.json(results);
     });
 }
+
 /*
-../valve/add
+POST ../valve/
 */
 exports.addValve = function (req, res) {
-    console.log(req.body.text);
-    res.json(req.body);
+    console.log(`${req.method} addValve`);
+    let requestBody = req.body;
+    console.log(requestBody);
+
+    let query = `INSERT into Valve_model (Model, Purpose, Type_drive) 
+        values (?, ?, ?);`;
+    let values = [requestBody.mark, requestBody.purpose, requestBody.typeDrive];
+
+    connection.query(query, values, (err, results) => {
+        if (err) {
+            res.status(400).json(err);
+            return;
+        }
+        res.json(requestBody);
+    });
+}
+/*
+GET ../valve/:mark
+*/
+exports.getValveByMark = function (req, res) {
+    console.log(`${req.method} getValveByMark`);
+    let query = `SELECT * FROM Valve_Model
+    JOIN materials ON materials.Model = valve_model.Model
+    JOIN work_env ON work_env.Model = valve_model.Model
+    JOIN documents ON documents.Model = valve_model.Model
+    JOIN operating_conditions ON operating_conditions.Model = valve_model.Model
+    WHERE valve_model.Model = ?`;
+    console.log(req.params.mark);
+    let value = [req.params.mark];
+
+    connection.query(query, value, function (err, results) {
+        if (err || results.length == 0) {
+            res.status(400).json(err);
+            return;
+        }
+        res.json(results[0]);
+    });
 }

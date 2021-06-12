@@ -8,6 +8,7 @@ const urlencodedParser = bodyParser.urlencoded({
 });
 
 valveRouter.get('/', valveController.getValves);
-valveRouter.post('/add', urlencodedParser, valveController.addValve);
+valveRouter.get('/:mark', valveController.getValveByMark);
+valveRouter.post('/', urlencodedParser, valveController.addValve);
 
 module.exports = valveRouter;
