@@ -1,0 +1,10 @@
+<div class="container">
+  <ng-container *ngIf="valve; else elseTemplate">
+    <h1>{{valve.Model}}</h1>
+    <div>{{valve.Main_Material}}</div>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <app-loader></app-loader>
+  </ng-template>
+
+</div>

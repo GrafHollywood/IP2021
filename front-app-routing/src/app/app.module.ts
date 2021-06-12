@@ -4,31 +4,25 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
-import { ValveListComponent } from './valve-list/valve-list.component';
 import { MainComponent } from './main/main.component';
-import { AddValveComponent } from './add-valve/add-valve.component';
 import { AddExecutionComponent } from './add-execution/add-execution.component';
-import { ValveCardComponent } from './valve-card/valve-card.component';
-import { FooterComponent } from './footer/footer.component';
-import { ValvePageComponent } from './valve-page/valve-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NavComponent } from './nav/nav.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
-    ValveListComponent,
     MainComponent,
-    AddValveComponent,
-    AddExecutionComponent,
-    ValveCardComponent,
+    NavComponent,
     FooterComponent,
-    ValvePageComponent
+    AddExecutionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

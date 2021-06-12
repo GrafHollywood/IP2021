@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ValveShort } from '../interfaces/valve.interface';
-import { ValveHttpService } from '../services/valve-http.service';
+import { ValveShort } from '../../shared/interfaces/valve.interface';
+import { ValveHttpService } from '../../shared/services/valve-http.service';
 
 @Component({
   selector: 'app-valve-list',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ValveShort } from '../interfaces/valve.interface';
+import { ValveShort } from '../../shared/interfaces/valve.interface';
 
 @Component({
   selector: 'app-valve-card',

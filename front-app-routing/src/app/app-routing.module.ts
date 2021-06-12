@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddExecutionComponent } from './add-execution/add-execution.component';
-import { AddValveComponent } from './add-valve/add-valve.component';
 import { MainComponent } from './main/main.component';
-import { ValveListComponent } from './valve-list/valve-list.component';
-import { ValvePageComponent } from './valve-page/valve-page.component';
 
 const routes: Routes = [
   {
@@ -13,15 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'valve',
-    component: ValveListComponent
-  },
-  {
-    path: 'valve/add',
-    component: AddValveComponent
-  },
-  {
-    path: 'valve/:id',
-    component: ValvePageComponent
+    loadChildren: () => import('./valve-module/valve-module.module').then(m => m.ValveModuleModule)
   },
   {
     path: 'execution/add',
