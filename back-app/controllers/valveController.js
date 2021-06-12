@@ -17,11 +17,10 @@ exports.getValves = async function (req, res) {
 /*
 POST ../valve/
 */
-exports.addValve = function (req, res) {
+exports.addValve = async function (req, res) {
     console.log(`${req.method} addValve`);
     let requestBody = req.body;
     console.log(requestBody);
-    let isValid = true;
 
     //добавление в таблицу Valve_model
     let query = `INSERT into Valve_model (Model, Purpose, Type_drive) 
@@ -31,12 +30,12 @@ exports.addValve = function (req, res) {
         requestBody.purpose,
         requestBody.typeDrive
     ];
-    connection.query(query, values, (err, results) => {
-        if (err) {
-            res.status(400).json(err);
-            return;
-        }
-    });
+    try {
+        await connection.query(query, values);
+    } catch (error) {
+        res.status(400).json(error);
+        return;
+    }
 
     //добавление в таблицу Work_Enviroment
     query = `INSERT into Work_Enviroment 
@@ -49,12 +48,12 @@ exports.addValve = function (req, res) {
         requestBody.tEnv,
         requestBody.pressure
     ];
-    connection.query(query, values, (err, results) => {
-        if (err) {
-            res.status(400).json(err);
-            return;
-        }
-    });
+    try {
+        await connection.query(query, values);
+    } catch (error) {
+        res.status(400).json(error);
+        return;
+    }
 
     //добавление в таблицу Materials
     query = `INSERT into Materials 
@@ -71,14 +70,47 @@ exports.addValve = function (req, res) {
         requestBody.sealerMaterial,
         requestBody.gasketMaterial
     ];
-    connection.query(query, values, (err, results) => {
-        if (err) {
-            res.status(400).json(err);
-            return;
-        }
-    });
+    try {
+        await connection.query(query, values);
+    } catch (error) {
+        res.status(400).json(error);
+        return;
+    }
+
+    //добавление в таблицу climate_conditions
+    query = `INSERT into climate_conditions 
+    (Model, tightness_class, climate_conditions, warranty_operation, warranty_storage, warranty_time, conservation) 
+        values (?,?,?,?,?,?,?,?);`;
+    values = [
+        requestBody.mark,
+        requestBody.tightnessClass,
+        requestBody.operatingConditions,
+        requestBody.warrantyOperation,
+        requestBody.warrantyStorage,
+        requestBody.warrantyTime,
+        requestBody.conservation,
+    ];
+    try {
+        await connection.query(query, values);
+    } catch (error) {
+        res.status(400).json(error);
+        return;
+    }
+
+    //добавление в таблицу Documents
+    query = `INSERT into Documents (Model) 
+    values (?);`;
+    values = [
+        requestBody.mark,
+    ];
+    try {
+        await connection.query(query, values);
+    } catch (error) {
+        res.status(400).json(error);
+        return;
+    }
     //отправка ответа
-    // res.json(requestBody);
+    res.json(requestBody);
 }
 /*
 GET ../valve/:mark
