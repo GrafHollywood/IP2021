@@ -16,6 +16,5 @@ export class ValveListComponent implements OnInit {
   }
   async getValveList() {
     this.valveList = await this.httpValve.getValves();
-    console.log(this.valveList);
   }
 }

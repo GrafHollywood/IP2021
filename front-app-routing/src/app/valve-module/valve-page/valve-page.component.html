@@ -1,10 +1,25 @@
 <div class="container">
   <ng-container *ngIf="valve; else elseTemplate">
-    <h1>{{valve.Model}}</h1>
-    <div>{{valve.Main_Material}}</div>
+    <div class="row">
+      <main class="col-8">
+        <h1 class="display-2">{{valve.Model}}</h1>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Материал: {{valve.Main_Material}}</li>
+          <li class="list-group-item">Назначение: {{valve.Purpose}}</li>
+          <li class="list-group-item">Тип привода: {{valve.Type_drive}}</li>
+          <li class="list-group-item">Рабочая среда: {{valve.Work_Enviroment}}</li>
+          <li class="list-group-item">Номинальное давление (PN): {{valve.Pressure}}</li>
+          <li class="list-group-item">Класс герметичности: {{valve.tightness_class}}</li>
+          <li class="list-group-item">Климатические условия: {{valve.climate_conditions}}</li>
+        </ul>
+      </main>
+      <div class="image col-4">
+        <img class="border  rounded-3" src="{{valve.img}}" alt="{{valve.Model}}">
+      </div>
+    </div>
   </ng-container>
+
   <ng-template #elseTemplate>
     <app-loader></app-loader>
   </ng-template>
-
 </div>
