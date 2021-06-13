@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const valveRouter = express.Router();
-const valveController = require('../controllers/valveController');
+const valveController = require('../controllers/valve-controller');
 
 const urlencodedParser = bodyParser.urlencoded({
     extended: false

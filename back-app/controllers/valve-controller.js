@@ -20,7 +20,6 @@ POST ../valve/
 exports.addValve = async function (req, res) {
     console.log(`${req.method} addValve`);
     let requestBody = req.body;
-    console.log(requestBody);
 
     //добавление в таблицу Valve_model
     let query = `INSERT into Valve_model (Model, Purpose, Type_drive) 
@@ -32,13 +31,17 @@ exports.addValve = async function (req, res) {
     ];
     try {
         await connection.query(query, values);
+        res.json({
+            succes: true
+        });
     } catch (error) {
+        console.log(error);
         res.status(400).json(error);
         return;
     }
 
     //добавление в таблицу Work_Enviroment
-    query = `INSERT into Work_Enviroment 
+    query = `INSERT into Work_Env 
     (Model, Work_Enviroment, t_work_env, t_env, Pressure) 
         values (?, ?, ?, ?, ?);`;
     values = [
@@ -51,6 +54,7 @@ exports.addValve = async function (req, res) {
     try {
         await connection.query(query, values);
     } catch (error) {
+        console.log(error);
         res.status(400).json(error);
         return;
     }
@@ -73,14 +77,15 @@ exports.addValve = async function (req, res) {
     try {
         await connection.query(query, values);
     } catch (error) {
+        console.log(error);
         res.status(400).json(error);
         return;
     }
 
-    //добавление в таблицу climate_conditions
-    query = `INSERT into climate_conditions 
+    //добавление в таблицу operating_conditions
+    query = `INSERT into operating_conditions 
     (Model, tightness_class, climate_conditions, warranty_operation, warranty_storage, warranty_time, conservation) 
-        values (?,?,?,?,?,?,?,?);`;
+        values (?,?,?,?,?,?,?);`;
     values = [
         requestBody.mark,
         requestBody.tightnessClass,
@@ -93,19 +98,22 @@ exports.addValve = async function (req, res) {
     try {
         await connection.query(query, values);
     } catch (error) {
+        console.log(error);
         res.status(400).json(error);
         return;
     }
 
     //добавление в таблицу Documents
-    query = `INSERT into Documents (Model) 
-    values (?);`;
+    query = `INSERT into Documents (Model, img) 
+    values (?, ?);`;
     values = [
         requestBody.mark,
+        requestBody.img
     ];
     try {
         await connection.query(query, values);
     } catch (error) {
+        console.log(error);
         res.status(400).json(error);
         return;
     }

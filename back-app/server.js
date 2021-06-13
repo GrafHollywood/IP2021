@@ -6,10 +6,12 @@ app.use(express.json());
 app.use(cors());
 
 
-const valveRouter = require('./routes/valveRouter'); //для адресов /valve
-const conditionsRouter = require('./routes/conditionsRouter');
+const valveRouter = require('./routes/valve-router'); //для адресов /valve
+const conditionsRouter = require('./routes/conditions-router');
+const executionRouter = require('./routes/execution-router');
 app.use('/api/v1/valve', valveRouter);
 app.use('/api/v1/conditions', conditionsRouter);
+app.use('/api/v1/execution', executionRouter);
 
 // обработка ошибки 404
 app.use(function (req, res, next) {
