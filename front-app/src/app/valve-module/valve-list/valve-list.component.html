@@ -1,0 +1,7 @@
+<div class="container">
+  <h1 class="m-3">Список всех клапанов</h1>
+  <p class="lead mb-5 ">Здесь предоставлен список всех клапанов в базе данных и краткая информация о каждом.</p>
+  <div class="row">
+    <app-valve-card class="col-md-4 col-sm-12 my-1" *ngFor="let valve of valveList" [valve]="valve"></app-valve-card>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+<div class="container">
+  <div class="py-4 text-center">
+    <h2 class="h1">Добавление марки клапана</h2>
+    <p class="lead">Если Вы хотите добавить новую марку клапана, то заполните поля ниже и нажмите кнопку "Добавить".
+      Поля
+      со "звездочкой" являются обязательными.</p>
+  </div>
+
+  <form [formGroup]="valveForm">
+    <div class="border-bottom py-3">
+      <h4 mb-3>Основная информация о марке</h4>
+      <div class="row">
+        <div class="form-group col-6">
+          <label class="form-label" for="mark">Наименование марки<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" id="mark" formControlName="mark" placeholder="Наименование марки"
+            [ngClass]="{'success': !valveForm.get('mark').invalid}">
+        </div>
+        <div class="form-group col-6">
+          <label class="form-label" for="typeDrive">Тип привода<span class="text-danger">*</span></label>
+          <select class="form-select" id="typeDrive" formControlName="typeDrive"
+            [ngClass]="{'success': !valveForm.get('typeDrive').invalid}">
+            <option value="ручной">ручной</option>
+            <option value="электропривод">электропривод</option>
+            <option value="пневмопривод">пневмопривод</option>
+            <option value="электромагнитный привод">электромагнитный привод</option>
+          </select>
+        </div>
+        <div class="form-group col-12">
+          <label class="form-label" for="purpose">Назначение<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" id="purpose" formControlName="purpose" placeholder="Назначение"
+            [ngClass]="{'success': !valveForm.get('purpose').invalid}">
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <ng-container *ngIf="valveForm.valid">
+    <form [formGroup]="materialForm">
+      <div class="border-bottom py-3">
+        <h4 mb-3>Материалы</h4>
+        <div class="row">
+          <div class="form-group">
+            <label class="form-label" for="mainMaterial">Основной материал<span class="text-danger">*</span></label>
+            <select class="form-select" id="mainMaterial" formControlName="mainMaterial"
+              [ngClass]="{'success': !materialForm.get('mainMaterial').invalid}">
+              <option value="сталь">сталь</option>
+              <option value="чугун">чугун</option>
+              <option value="латунь">латунь</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label" for="bodyMaterial">Корпус</label>
+            <input class="form-control" type="text" id="bodyMaterial" formControlName="bodyMaterial"
+              placeholder="Материал корпуса">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label" for="capMaterial">Крышка</label>
+            <input class="form-control" type="text" id="capMaterial" formControlName="capMaterial"
+              placeholder="Материал крышки">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label" for="oilSealMaterial">Сальник</label>
+            <input class="form-control" type="text" id="oilSealMaterial" formControlName="oilSealMaterial"
+              placeholder="Материал сальника">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label" for="oilSealPackMaterial">Сальниковая набивка</label>
+            <input class="form-control" type="text" id="oilSealPackMaterial" formControlName="oilSealPackMaterial"
+              placeholder="Материал сальниковой набивки">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label" for="spindleMaterial">Шпиндель</label>
+            <input class="form-control" type="text" id="spindleMaterial" formControlName="spindleMaterial"
+              placeholder="Материал шпинделя">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label" for="sealerMaterial">Уплотнитель</label>
+            <input class="form-control" type="text" id="sealerMaterial" formControlName="sealerMaterial"
+              placeholder="Материал уплотнителя">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label" for="gasketMaterial">Прокладка</label>
+            <input class="form-control" type="text" id="gasketMaterial" formControlName="gasketMaterial"
+              placeholder="Материал прокладки">
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="materialForm.valid">
+    <form [formGroup]="conditionsForm">
+      <div class="border-bottom py-3">
+        <h4 mb-3>Условия эксплуатации</h4>
+        <div class="form-group">
+          <label class="form-label" for="tightnessClass">Класс герметичности<span class="text-danger">*</span></label>
+          <select class="form-select" id="tightnessClass" formControlName="tightnessClass"
+            [ngClass]="{'success': !conditionsForm.get('tightnessClass').invalid}">
+            <option *ngFor="let class of tightnessList" value="{{class}}">{{class}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="operatingConditions">Климатические условия эксплуатации<span
+              class="text-danger">*</span></label>
+          <select class="form-select" id="operatingConditions" formControlName="operatingConditions"
+            [ngClass]="{'success': !conditionsForm.get('operatingConditions').invalid}">
+            <option *ngFor="let class of climateList" value="{{class}}">{{class}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="warrantyOperation">Гарантийный срок эксплуатации (мес)</label>
+          <input class="form-control" type="number" id="warrantyOperation" formControlName="warrantyOperation"
+            placeholder="Гарантийный срок эксплуатации">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="warrantyStorage">Гарантийный срок хранения (мес)</label>
+          <input class="form-control" type="number" id="warrantyStorage" formControlName="warrantyStorage"
+            placeholder="Гарантийный срок хранения">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="warrantyTime">Гарантийная наработка (мес)</label>
+          <input class="form-control" type="number" id="warrantyTime" formControlName="warrantyTime"
+            placeholder="Гарантийная наработка">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="conservation">Срок консервации (мес)</label>
+          <input class="form-control" type="number" id="conservation" formControlName="conservation"
+            placeholder="Срок консервации">
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="conditionsForm.valid">
+    <form [formGroup]="workEnvForm">
+      <div class="border-bottom py-3">
+        <h4 mb-3>Рабочая среда</h4>
+        <div class="form-group">
+          <label class="form-label" for="workEnv">Рабочая среда<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" id="workEnv" formControlName="workEnv" placeholder="Рабочая среда"
+            [ngClass]="{'success': !workEnvForm.get('workEnv').invalid}">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tWork">Температура рабочей среды<span class="text-danger">*</span></label>
+          <input class="form-control" type="number" id="tWork" formControlName="tWork"
+            placeholder="Температура рабочей среды" [ngClass]="{'success': !workEnvForm.get('tWork').invalid}">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tEnv">Температура окружающей среды<span class="text-danger">*</span></label>
+          <input class="form-control" type="number" id="tEnv" formControlName="tEnv"
+            placeholder="Температура окружающей среды" [ngClass]="{'success': !workEnvForm.get('tEnv').invalid}">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pressure">Номинальное давление (МПа)<span class="text-danger">*</span></label>
+          <input class="form-control" type="number" id="pressure" formControlName="pressure"
+            placeholder="Номинальное давление" [ngClass]="{'success': !workEnvForm.get('pressure').invalid}">
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="workEnvForm.valid">
+    <form [formGroup]="docForm">
+      <div class="border-bottom py-3">
+        <h4 mb-3>Документы и файлы</h4>
+        <div class="form-group">
+          <label class="form-label" for="img">Ссылка на изображение<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" id="img" formControlName="img" placeholder="Ссылка на изображение"
+            [ngClass]="{'success': !workEnvForm.get('workEnv').invalid}">
+        </div>
+      </div>
+      <button class="btn btn-outline-dark my-3" [disabled]="workEnvForm.invalid" (click)="addValve()">Добавить</button>
+    </form>
+  </ng-container>
+</div>
