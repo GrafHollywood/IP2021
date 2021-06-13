@@ -22,7 +22,13 @@ export class ValveHttpService {
   public getValveByMark(mark: string): Promise<ValveFull> {
     return this.http.get<ValveFull>(`${this.url}/valve/${mark}`).toPromise();
   }
+  public getValveList(): Promise<string[]> {
+    return this.http.get<string[]>(`${this.url}/valve/short`).toPromise();
+  }
   public postValve(obj: object) {
     return this.http.post(`${this.url}/valve`, obj).toPromise();
+  }
+  public postExecution(obj: object) {
+    return this.http.post(`${this.url}/execution`, obj).toPromise();
   }
 }

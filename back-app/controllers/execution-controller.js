@@ -6,7 +6,7 @@ exports.getExecutionByMark = async function (req, res) {
         WHERE Model = ?`;
     try {
         let results = await connection.query(query, value);
-        res.json(results[0][0]);
+        res.json(results[0]);
     } catch (error) {
         res.json(error);
     }
@@ -14,7 +14,7 @@ exports.getExecutionByMark = async function (req, res) {
 
 exports.postExecution = async function (req, res) {
     let requestBody = req.body;
-    let query = `INSERT into Valve_model (Execution, Model, D, L, H, Type_connect, n_connect, d_connect, D1_connect, D2_connect, Weight) 
+    let query = `INSERT into Execution (Execution, Model, D, L, H, Type_connect, n_connect, d_connect, D1_connect, D2_connect, Weight) 
     values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     let value = [
         `${requestBody.mark}-${requestBody.d}`,
@@ -31,10 +31,10 @@ exports.postExecution = async function (req, res) {
     ];
     try {
         await connection.query(query, value);
-        res.json({
+        res.status(200).json({
             succes: true
         });
     } catch (error) {
-        res.json(error);
+        res.status(400).json(error);
     }
 }
