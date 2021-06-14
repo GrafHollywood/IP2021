@@ -52,8 +52,10 @@ export class AddValveComponent implements OnInit {
     //рабочая среда
     this.workEnvForm = this.fb.group({
       workEnv: [null, [Validators.required, Validators.maxLength(150)]],
-      tWork: [null, [Validators.required]],
-      tEnv: [null, [Validators.required]],
+      tWorkMax: [null, []],
+      tWorkMin: [null, []],
+      tEnvMax: [null, []],
+      tEnvMin: [null, []],
       pressure: [null, [Validators.required]],
     });
     //документы
@@ -89,14 +91,16 @@ export class AddValveComponent implements OnInit {
     this.postObj['conservation'] = values.conservation;
 
     this.postObj['workEnv'] = values.workEnv;
-    this.postObj['tWork'] = values.tWork;
-    this.postObj['tEnv'] = values.tEnv;
+    this.postObj['tWorkMin'] = values.tWorkMin;
+    this.postObj['tWorkMax'] = values.tWorkMax;
+    this.postObj['tEnvMin'] = values.tEnvMin;
+    this.postObj['tEnvMax'] = values.tEnvMax;
     this.postObj['pressure'] = values.pressure;
 
     this.postObj['img'] = values.img;
 
     this.httpService.postValve(this.postObj);
-    
+
     this.router.navigateByUrl(`valve/${values.mark}`);
   }
 }

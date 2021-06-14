@@ -133,23 +133,30 @@
 
   <ng-container *ngIf="conditionsForm.valid">
     <form [formGroup]="workEnvForm">
-      <div class="border-bottom py-3">
+      <div class="border-bottom py-3 row">
         <h4 mb-3>Рабочая среда</h4>
         <div class="form-group">
           <label class="form-label" for="workEnv">Рабочая среда<span class="text-danger">*</span></label>
           <input class="form-control" type="text" id="workEnv" formControlName="workEnv" placeholder="Рабочая среда"
             [ngClass]="{'success': !workEnvForm.get('workEnv').invalid}">
         </div>
-        <div class="form-group">
-          <label class="form-label" for="tWork">Температура рабочей среды<span class="text-danger">*</span></label>
-          <input class="form-control" type="number" id="tWork" formControlName="tWork"
-            placeholder="Температура рабочей среды" [ngClass]="{'success': !workEnvForm.get('tWork').invalid}">
+
+        <label class="form-label">Температура рабочей среды</label>
+        <div class="form-group col-6">
+          <input class="form-control" type="number" formControlName="tWorkMin" placeholder="min">
         </div>
-        <div class="form-group">
-          <label class="form-label" for="tEnv">Температура окружающей среды<span class="text-danger">*</span></label>
-          <input class="form-control" type="number" id="tEnv" formControlName="tEnv"
-            placeholder="Температура окружающей среды" [ngClass]="{'success': !workEnvForm.get('tEnv').invalid}">
+        <div class="form-group col-6">
+          <input class="form-control" type="number" formControlName="tWorkMax" placeholder="max">
         </div>
+
+        <label class="form-label">Температура окружающей среды</label>
+        <div class="form-group col-6">
+          <input class="form-control" type="number" formControlName="tEnvMin" placeholder="min">
+        </div>
+        <div class="form-group col-6">
+          <input class="form-control" type="number" formControlName="tEnvMax" placeholder="max">
+        </div>
+
         <div class="form-group">
           <label class="form-label" for="pressure">Номинальное давление (МПа)<span class="text-danger">*</span></label>
           <input class="form-control" type="number" id="pressure" formControlName="pressure"
