@@ -5,9 +5,9 @@ const connection = require("../mode/connection");
 GET ../valve
 */
 exports.getValves = async function (req, res) {
-    let query = `SELECT Valve_Model.Model, materials.Main_Material, work_env.Pressure, documents.img FROM Valve_Model 
+    let query = `SELECT Valve_Model.Model, materials.Main_Material, Work_Enviroment.Pressure, documents.img FROM Valve_Model 
     JOIN materials ON materials.Model = valve_model.Model
-    JOIN work_env ON work_env.Model = valve_model.Model
+    JOIN Work_Enviroment ON Work_Enviroment.Model = valve_model.Model
     JOIN documents ON documents.Model = valve_model.Model`;
     let results = await connection.query(query)
     res.status(200).json(results[0]);
@@ -39,14 +39,16 @@ exports.addValve = async function (req, res) {
     }
 
     //добавление в таблицу Work_Enviroment
-    query = `INSERT into Work_Env 
-    (Model, Work_Enviroment, t_work_env, t_env, Pressure) 
-        values (?, ?, ?, ?, ?);`;
+    query = `INSERT into Work_Enviroment 
+    (Model, Work_Enviroment, t_work_env_min, t_work_env_max, t_env_min, t_env_max, Pressure) 
+        values (?, ?, ?, ?, ?, ?, ?);`;
     values = [
         requestBody.mark,
         requestBody.workEnv,
-        requestBody.tWork,
-        requestBody.tEnv,
+        requestBody.tWorkMin,
+        requestBody.tWorkMax,
+        requestBody.tEnvMin,
+        requestBody.tEnvMax,
         requestBody.pressure
     ];
     try {
@@ -116,7 +118,9 @@ exports.addValve = async function (req, res) {
         return;
     }
     //отправка ответа
-    res.json(requestBody);
+    res.status(200).json({
+        succes: true
+    });
 }
 /*
 GET ../valve/:mark
@@ -124,7 +128,7 @@ GET ../valve/:mark
 exports.getValveByMark = async function (req, res) {
     let query = `SELECT * FROM Valve_Model
     JOIN materials ON materials.Model = valve_model.Model
-    JOIN work_env ON work_env.Model = valve_model.Model
+    JOIN Work_Enviroment ON Work_Enviroment.Model = valve_model.Model
     JOIN documents ON documents.Model = valve_model.Model
     JOIN operating_conditions ON operating_conditions.Model = valve_model.Model
     WHERE valve_model.Model = ?`;

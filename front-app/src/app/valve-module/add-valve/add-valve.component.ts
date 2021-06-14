@@ -67,7 +67,7 @@ export class AddValveComponent implements OnInit {
     this.tightnessList = await this.httpService.getTightnessClass();
     this.climateList = await this.httpService.getClimateClass();
   }
-  addValve() {
+  async addValve() {
     // const values = this.valveForm.value;
     const values = Object.assign(this.valveForm.value, this.materialForm.value, this.conditionsForm.value, this.workEnvForm.value, this.docForm.value);
     this.postObj['mark'] = values.mark;
@@ -98,8 +98,11 @@ export class AddValveComponent implements OnInit {
     this.postObj['pressure'] = values.pressure;
 
     this.postObj['img'] = values.img;
-
-    this.httpService.postValve(this.postObj);
+    try {
+      await this.httpService.postValve(this.postObj);
+    } catch (error) {
+      console.log(error);
+    }
 
     this.router.navigateByUrl(`valve/${values.mark}`);
   }
