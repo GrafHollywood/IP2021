@@ -1,5 +1,5 @@
 <div class="container">
-  <ng-container *ngIf="valve; else elseTemplate">
+  <ng-container *ngIf="valve && execution; else elseTemplate">
     <div class="row">
       <main class="col-8">
         <h1 class="display-2">{{valve.Model}}</h1>
@@ -15,6 +15,37 @@
       </main>
       <div class="image col-4">
         <img class="border  rounded-3" src="{{valve.img}}" alt="{{valve.Model}}">
+      </div>
+      <div class="col-12">
+        <h2 class="display-5">Исполнения клапана</h2>
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">DN</th>
+              <th scope="col">L</th>
+              <th scope="col">H</th>
+              <th scope="col">n</th>
+              <th scope="col">d</th>
+              <th scope="col">D1</th>
+              <th scope="col">D2</th>
+              <th scope="col">Масса</th>
+              <th scope="col">Тип присоединения</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let exec of execution">
+              <th scope="row">{{exec.D}}</th>
+              <th>{{exec.L}}</th>
+              <th>{{exec.H}}</th>
+              <th>{{exec.n_connect}}</th>
+              <th>{{exec.d_connect}}</th>
+              <th>{{exec.D1_connect}}</th>
+              <th>{{exec.D2_connect}}</th>
+              <th>{{exec.Weight}}</th>
+              <th>{{exec.Type_connect}}</th>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </ng-container>

@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Execution } from 'src/app/shared/interfaces/execution.interface';
+import { ExecutionHttpService } from 'src/app/shared/services/execution-http.service';
 import { ValveFull } from '../../shared/interfaces/valve.interface';
 import { ValveHttpService } from '../../shared/services/valve-http.service';
 
@@ -10,8 +12,9 @@ import { ValveHttpService } from '../../shared/services/valve-http.service';
 })
 export class ValvePageComponent implements OnInit {
   valve!: ValveFull;
+  execution!: Execution[];
   mark: string;
-  constructor(private route: ActivatedRoute, private httpService: ValveHttpService) {
+  constructor(private route: ActivatedRoute, private httpValve: ValveHttpService, private httpExecution: ExecutionHttpService) {
     this.route.params.subscribe(param => {
       this.mark = param.id;
     });
@@ -19,8 +22,12 @@ export class ValvePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getValve();
+    this.getExecution();
   }
   async getValve() {
-    this.valve = await this.httpService.getValveByMark(this.mark);
+    this.valve = await this.httpValve.getValveByMark(this.mark);
+  }
+  async getExecution() {
+    this.execution = await this.httpExecution.getExecutionByMark(this.mark);
   }
 }

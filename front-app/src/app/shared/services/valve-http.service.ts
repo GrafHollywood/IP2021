@@ -28,7 +28,5 @@ export class ValveHttpService {
   public postValve(obj: object) {
     return this.http.post(`${this.url}/valve`, obj).toPromise();
   }
-  public postExecution(obj: object) {
-    return this.http.post(`${this.url}/execution`, obj).toPromise();
-  }
+
 }

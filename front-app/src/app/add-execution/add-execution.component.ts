@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ExecutionHttpService } from '../shared/services/execution-http.service';
 import { ValveHttpService } from '../shared/services/valve-http.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ValveHttpService } from '../shared/services/valve-http.service';
 export class AddExecutionComponent implements OnInit {
   executionForm!: FormGroup;
   modelList: string[];
-  constructor(private fb: FormBuilder, private httpService: ValveHttpService) { }
+  constructor(private fb: FormBuilder, private httpValve: ValveHttpService, private httpExecution: ExecutionHttpService) { }
 
   ngOnInit(): void {
     this.getModels();
@@ -29,12 +30,12 @@ export class AddExecutionComponent implements OnInit {
     })
   }
   async getModels() {
-    this.modelList = await this.httpService.getValveList();
+    this.modelList = await this.httpValve.getValveList();
   }
 
   onAddExecution() {
     const values = this.executionForm.value;
-    this.httpService.postExecution(values);
+    this.httpExecution.postExecution(values);
     this.executionForm.reset();
   }
 }

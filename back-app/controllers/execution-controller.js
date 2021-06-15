@@ -2,7 +2,7 @@ const connection = require('../mode/connection');
 
 exports.getExecutionByMark = async function (req, res) {
     let value = [req.params.mark];
-    let query = `SELECT * FROM Execution
+    let query = `SELECT D, L, H, Type_connect, n_connect, d_connect, D1_connect, D2_connect, Weight FROM Execution
         WHERE Model = ?`;
     try {
         let results = await connection.query(query, value);
