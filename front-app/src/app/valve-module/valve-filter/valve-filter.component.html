@@ -1,0 +1,22 @@
+<form [formGroup]="filterForm" class="row">
+  <div class="mb-3 col-6">
+    <label class="form-label">Номинальный диаметр (DN): {{DN}}</label>
+    <input multiple type="range" class="form-range" formControlName="DN" (input)="onInputDN()">
+  </div>
+  <div class="mb-3 col-6">
+    <label class="form-label">Номинальное давление (PN): {{PN}}</label>
+    <input multiple type="range" max="10" step="0.1" class="form-range" formControlName="PN" (input)="onInputPN()">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Материал</label>
+    <select class="form-select" formControlName="material">
+      <option value="сталь">сталь</option>
+      <option value="чугун">чугун</option>
+      <option value="латунь">латунь</option>
+    </select>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-outline-primary" (click)="onFilterValve()">Подобрать</button>
+    <button class="btn btn-outline-danger ms-2" (click)="onResetValve()">Сбросить</button>
+  </div>
+</form>

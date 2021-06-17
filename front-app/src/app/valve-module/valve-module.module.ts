@@ -8,6 +8,7 @@ import { AddValveComponent } from './add-valve/add-valve.component';
 import { ValvePageComponent } from './valve-page/valve-page.component';
 import { ValveCardComponent } from './valve-card/valve-card.component';
 import { LoaderComponent } from '../shared/loader/loader.component';
+import { ValveFilterComponent } from './valve-filter/valve-filter.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { LoaderComponent } from '../shared/loader/loader.component';
     AddValveComponent,
     ValvePageComponent,
     ValveCardComponent,
-    LoaderComponent
+    LoaderComponent,
+    ValveFilterComponent
   ],
   imports: [
     CommonModule,

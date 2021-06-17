@@ -36,6 +36,5 @@ export class AddExecutionComponent implements OnInit {
   onAddExecution() {
     const values = this.executionForm.value;
     this.httpExecution.postExecution(values);
-    this.executionForm.reset();
   }
 }

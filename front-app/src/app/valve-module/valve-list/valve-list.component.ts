@@ -9,6 +9,8 @@ import { ValveHttpService } from '../../shared/services/valve-http.service';
 })
 export class ValveListComponent implements OnInit {
   valveList: ValveShort[];
+  isFilter = false;
+  filter = {};
   constructor(private httpValve: ValveHttpService) { }
 
   ngOnInit(): void {
@@ -16,5 +18,12 @@ export class ValveListComponent implements OnInit {
   }
   async getValveList() {
     this.valveList = await this.httpValve.getValves();
+  }
+  onFilterValve(filter: object) {
+    this.filter = filter;
+    this.isFilter = true;
+  }
+  onResetValve() {
+    this.isFilter = false;
   }
 }

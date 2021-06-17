@@ -1,7 +1,11 @@
 <div class="container">
   <h1 class="m-3">Список всех клапанов</h1>
   <p class="lead mb-5 ">Здесь предоставлен список всех клапанов в базе данных и краткая информация о каждом.</p>
+  <app-valve-filter class="my-2" (onFilter)="onFilterValve($event)" (onReset)="onResetValve()"></app-valve-filter>
   <div class="row">
-    <app-valve-card class="col-md-4 col-sm-12 my-1" *ngFor="let valve of valveList" [valve]="valve"></app-valve-card>
+    <div class="col-md-6 col-sm-12 col-lg-4 my-1" *ngFor="let valve of valveList">
+      <app-valve-card [valve]="valve"
+        *ngIf="!isFilter || (valve.Main_Material == filter.material && valve.Pressure <= filter.PN)"></app-valve-card>
+    </div>
   </div>
 </div>
