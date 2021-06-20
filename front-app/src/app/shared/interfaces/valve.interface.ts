@@ -2,7 +2,8 @@ export interface ValveShort {
     Model: string,
     Main_Material: string,
     Pressure: number,
-    img: string
+    img: string,
+    DN: number[]
 }
 
 export interface ValveFull {

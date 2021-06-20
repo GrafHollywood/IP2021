@@ -4,8 +4,7 @@
   <app-valve-filter class="my-2" (onFilter)="onFilterValve($event)" (onReset)="onResetValve()"></app-valve-filter>
   <div class="row">
     <div class="col-md-6 col-sm-12 col-lg-4 my-1" *ngFor="let valve of valveList">
-      <app-valve-card [valve]="valve"
-        *ngIf="!isFilter || (valve.Main_Material == filter.material && valve.Pressure <= filter.PN)"></app-valve-card>
+      <app-valve-card [valve]="valve"></app-valve-card>
     </div>
   </div>
 </div>

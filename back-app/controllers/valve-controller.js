@@ -9,8 +9,16 @@ exports.getValves = async function (req, res) {
     JOIN materials ON materials.Model = valve_model.Model
     JOIN Work_Enviroment ON Work_Enviroment.Model = valve_model.Model
     JOIN documents ON documents.Model = valve_model.Model`;
-    let results = await connection.query(query)
-    res.status(200).json(results[0]);
+    let results = (await connection.query(query))[0];
+    let execution = (await connection.query('SELECT Model, D FROM engineering_project.execution'))[0];
+    execution.forEach(item => {
+        let i = results.findIndex(valve => valve.Model == item.Model);
+        if (!('DN' in results[i])) {
+            results[i]['DN'] = [];
+        }
+        results[i].DN.push(item.D);
+    });
+    res.status(200).json(results);
 }
 
 /*

@@ -2,8 +2,9 @@
   <div class="row align-items-center h-100">
     <div class="col-6">
       <h4>{{valve.Model}}</h4>
-      <p class="card-text">Материал: {{valve.Main_Material}}<br>
-        PN: {{valve.Pressure}}</p>
+      <p class="card-text">Материал: {{valve.Main_Material}}</p>
+      <p class="card-text">PN: {{valve.Pressure}}</p>
+      <p class="card-text">DN: {{valve.DN}}</p>
       <a [routerLink]="[valve.Model]" class="btn btn-primary">Подробнее</a>
     </div>
     <img src="{{valve.img}}" alt="valve.Model" class="col-6">
