@@ -2,7 +2,7 @@
 ## Документация и полезная информация
 ___
 ### Записка к проекту
-[Записка](/заПИСКА.docx)
+[Записка](заПИСКА.docx)
 ### Сайты примеры:
 https://dn.ru/klapan/klapan-zapornyi
 https://www.promarm.ru/valves/shut_off_valve/15s65nzh
