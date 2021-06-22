@@ -1,9 +1,8 @@
 const Valve = require("../models/valve");
 const connection = require("../mode/connection");
 
-/*
-GET ../valve
-*/
+
+// GET ../valve
 exports.getValves = async function (req, res) {
     let query = `SELECT Valve_Model.Model, materials.Main_Material, Work_Enviroment.Pressure, documents.img FROM Valve_Model 
     JOIN materials ON materials.Model = valve_model.Model
@@ -21,9 +20,90 @@ exports.getValves = async function (req, res) {
     res.status(200).json(results);
 }
 
-/*
-POST ../valve/
-*/
+// GET ../valve/:mark
+exports.getValveByMark = async function (req, res) {
+    let query = `SELECT * FROM Valve_Model
+    JOIN materials ON materials.Model = valve_model.Model
+    JOIN Work_Enviroment ON Work_Enviroment.Model = valve_model.Model
+    JOIN documents ON documents.Model = valve_model.Model
+    JOIN operating_conditions ON operating_conditions.Model = valve_model.Model
+    WHERE valve_model.Model = ?`;
+    let value = [req.params.mark];
+    try {
+        let results = await connection.query(query, value);
+        res.json(results[0][0]);
+    } catch (error) {
+        res.json(error);
+        return;
+    }
+}
+
+// GET ..valve/short
+exports.getValvesShort = async function (req, res) {
+    let query = `SELECT Model FROM Valve_Model`;
+    try {
+        let results = await connection.query(query);
+        res.json(results[0].map(item => item.Model));
+    } catch (error) {
+        res.json(error);
+        return;
+    }
+}
+
+//GET ..valve/env
+exports.getValveWorkEnv = async function (req, res) {
+    let query = `SELECT Work_Enviroment FROM work_enviroment group by Work_Enviroment`;
+    try {
+        let results = await connection.query(query);
+        res.json(results[0].map(item => item.Work_Enviroment));
+    } catch (error) {
+        res.json(error);
+        return;
+    }
+}
+
+// GET ..valve/filter
+exports.getValveFilter = async function (req, res) {
+    const queryParam = req.query;
+    console.log(queryParam);
+    const query = `SELECT Valve_Model.Model, materials.Main_Material, Work_Enviroment.Pressure, documents.img FROM Valve_Model
+        JOIN materials ON 
+            materials.Main_Material = '${queryParam.material}' 
+            AND materials.Model = Valve_Model.Model
+        JOIN work_enviroment ON 
+            work_enviroment.t_env_max >= ${queryParam.tEnw} 
+            AND work_enviroment.t_env_min <= ${queryParam.tEnw} 
+            AND work_enviroment.Work_Enviroment = '${queryParam.workEnv}' 
+            AND work_enviroment.Pressure = ${queryParam.PN}
+            AND work_enviroment.Model = Valve_Model.Model
+        JOIN documents ON 
+            documents.Model = valve_model.Model
+        JOIN execution ON 
+            execution.D = ${queryParam.DN}
+            AND execution.Type_connect = '${queryParam.typeConnect}'
+            AND execution.Model = valve_model.Model
+        JOIN operating_conditions ON 
+            operating_conditions.climate_conditions = '${queryParam.climateCondition}'
+            AND operating_conditions.tightness_class = '${queryParam.classTightness}'
+            AND operating_conditions.Model = valve_model.Model;`
+    try {
+        let results = (await connection.query(query))[0];
+        let execution = (await connection.query('SELECT Model, D FROM execution'))[0];
+        // execution.forEach(item => {
+        //     let i = results.findIndex(valve => valve.Model == item.Model);
+        //     if (!('DN' in results[i])) {
+        //         results[i]['DN'] = [];
+        //     }
+        //     results[i].DN.push(item.D);
+        // });
+        res.status(200).json(results);
+    } catch (error) {
+        res.status(404).json(error);
+        return;
+    }
+}
+
+// POST ../valve/
 exports.addValve = async function (req, res) {
     let requestBody = req.body;
 
@@ -129,34 +209,4 @@ exports.addValve = async function (req, res) {
     res.status(200).json({
         succes: true
     });
-}
-/*
-GET ../valve/:mark
-*/
-exports.getValveByMark = async function (req, res) {
-    let query = `SELECT * FROM Valve_Model
-    JOIN materials ON materials.Model = valve_model.Model
-    JOIN Work_Enviroment ON Work_Enviroment.Model = valve_model.Model
-    JOIN documents ON documents.Model = valve_model.Model
-    JOIN operating_conditions ON operating_conditions.Model = valve_model.Model
-    WHERE valve_model.Model = ?`;
-    let value = [req.params.mark];
-    try {
-        let results = await connection.query(query, value);
-        res.json(results[0][0]);
-    } catch (error) {
-        res.json(error);
-        return;
-    }
-}
-
-exports.getValvesShort = async function (req, res) {
-    let query = `SELECT Model FROM Valve_Model`;
-    try {
-        let results = await connection.query(query);
-        res.json(results[0].map(item => item.Model));
-    } catch (error) {
-        res.json(error);
-        return;
-    }
 }

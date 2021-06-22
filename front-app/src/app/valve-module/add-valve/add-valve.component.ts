@@ -54,8 +54,8 @@ export class AddValveComponent implements OnInit {
       workEnv: [null, [Validators.required, Validators.maxLength(150)]],
       tWorkMax: [null, []],
       tWorkMin: [null, []],
-      tEnvMax: [null, []],
-      tEnvMin: [null, []],
+      tEnvMax: [null, [Validators.required]],
+      tEnvMin: [null, [Validators.required]],
       pressure: [null, [Validators.required]],
     });
     //документы

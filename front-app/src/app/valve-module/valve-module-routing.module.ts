@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddValveComponent } from './add-valve/add-valve.component';
+import { FilterPageComponent } from './filter-page/filter-page.component';
 import { ValveListComponent } from './valve-list/valve-list.component';
 import { ValvePageComponent } from './valve-page/valve-page.component';
 
@@ -10,13 +11,17 @@ const routes: Routes = [
     component: ValveListComponent
   },
   {
-    path:'add',
+    path: 'add',
     component: AddValveComponent
+  },
+  {
+    path: 'filter',
+    component: FilterPageComponent,
   },
   {
     path: ':id',
     component: ValvePageComponent
-  }
+  },
 ];
 
 @NgModule({

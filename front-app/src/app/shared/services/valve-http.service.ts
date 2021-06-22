@@ -19,6 +19,9 @@ export class ValveHttpService {
   public getClimateClass(): Promise<string[]> {
     return this.http.get<string[]>(`${this.url}/conditions/climate`).toPromise();
   }
+  public getWorkEnvList(): Promise<string[]> {
+    return this.http.get<string[]>(`${this.url}/valve/env`).toPromise();
+  }
   public getValveByMark(mark: string): Promise<ValveFull> {
     return this.http.get<ValveFull>(`${this.url}/valve/${mark}`).toPromise();
   }

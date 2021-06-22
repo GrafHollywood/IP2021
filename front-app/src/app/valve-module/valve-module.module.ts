@@ -9,6 +9,8 @@ import { ValvePageComponent } from './valve-page/valve-page.component';
 import { ValveCardComponent } from './valve-card/valve-card.component';
 import { LoaderComponent } from '../shared/loader/loader.component';
 import { ValveFilterComponent } from './valve-filter/valve-filter.component';
+import { FilterPageComponent } from './filter-page/filter-page.component';
+import { SearchValveComponent } from './search-valve/search-valve.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { ValveFilterComponent } from './valve-filter/valve-filter.component';
     ValvePageComponent,
     ValveCardComponent,
     LoaderComponent,
-    ValveFilterComponent
+    ValveFilterComponent,
+    FilterPageComponent,
+    SearchValveComponent
   ],
   imports: [
     CommonModule,

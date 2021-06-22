@@ -1,0 +1,7 @@
+<div class="container">
+  <app-search-valve></app-search-valve>
+  <app-valve-filter (onFilter)="onFilter($event)"></app-valve-filter>
+  <div class="col-md-6 col-sm-12 col-lg-4 my-1" *ngFor="let valve of valveList">
+    <app-valve-card [valve]="valve"></app-valve-card>
+  </div>
+</div>

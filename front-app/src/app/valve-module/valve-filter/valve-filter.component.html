@@ -1,13 +1,24 @@
 <form [formGroup]="filterForm" class="row">
   <div class="mb-3 col-6">
-    <label class="form-label">Номинальный диаметр (DN): {{DN}}</label>
-    <input multiple type="range" class="form-range" formControlName="DN" (input)="onInputDN()">
+    <label class="form-label">Номинальный диаметр (DN):</label>
+    <input type="number" class="form-control" formControlName="DN">
   </div>
   <div class="mb-3 col-6">
-    <label class="form-label">Номинальное давление (PN): {{PN}}</label>
-    <input multiple type="range" max="10" step="0.1" class="form-range" formControlName="PN" (input)="onInputPN()">
+    <label class="form-label">Номинальное давление (PN):</label>
+    <input type="number" class="form-control" formControlName="PN">
   </div>
-  <div class="mb-3">
+  <div class="mb-3 col-6">
+    <label class="form-label">Температура окружающей среды:</label>
+    <input type="number" class="form-control" formControlName="tEnw">
+  </div>
+  <div class="mb-3 col-6">
+    <label class="form-label">Присоединение</label>
+    <select class="form-select" formControlName="typeConnect">
+      <option value="фланцевое">фланцевое</option>
+      <option value="цапковое">цапковое</option>
+    </select>
+  </div>
+  <div class="mb-3 col-6">
     <label class="form-label">Материал</label>
     <select class="form-select" formControlName="material">
       <option value="сталь">сталь</option>
@@ -15,8 +26,26 @@
       <option value="латунь">латунь</option>
     </select>
   </div>
+  <div class="mb-3 col-6">
+    <label class="form-label">Рабочая среда</label>
+    <select class="form-select" formControlName="workEnv">
+      <option *ngFor="let env of envList" value="{{env}}">{{env}}</option>
+    </select>
+  </div>
+  <div class="mb-3 col-6">
+    <label class="form-label">Класс герметичности</label>
+    <select class="form-select" formControlName="classTightness">
+      <option *ngFor="let class of tightnessList" value="{{class}}">{{class}}</option>
+    </select>
+  </div>
+  <div class="mb-3 col-6">
+    <label class="form-label">Климатические условия</label>
+    <select class="form-select" formControlName="climateCondition">
+      <option *ngFor="let class of climateList" value="{{class}}">{{class}}</option>
+    </select>
+  </div>
   <div class="col-12">
-    <button type="submit" class="btn btn-outline-primary" (click)="onFilterValve()">Подобрать</button>
+    <button type="submit" class="btn btn-outline-primary" (click)="onFilterValve()" [disabled]="filterForm.invalid">Подобрать</button>
     <button class="btn btn-outline-danger ms-2" (click)="onResetValve()">Сбросить</button>
   </div>
 </form>
