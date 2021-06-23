@@ -89,14 +89,36 @@ exports.getValveFilter = async function (req, res) {
     try {
         let results = (await connection.query(query))[0];
         let execution = (await connection.query('SELECT Model, D FROM execution'))[0];
-        // execution.forEach(item => {
-        //     let i = results.findIndex(valve => valve.Model == item.Model);
-        //     if (!('DN' in results[i])) {
-        //         results[i]['DN'] = [];
-        //     }
-        //     results[i].DN.push(item.D);
-        // });
+        // console.log(execution)
+        execution.forEach(item => {
+            let i = results.findIndex(valve => valve.Model == item.Model);
+            if (i != -1) {
+                if (!('DN' in results[i])) {
+                    results[i]['DN'] = [];
+                }
+                results[i].DN.push(item.D);
+            }
+        });
         res.status(200).json(results);
+    } catch (error) {
+        res.status(404).json(error);
+        return;
+    }
+}
+
+// DELETE ../valve/:mark
+exports.deleteValve = async function (req, res) {
+    const mark = req.params.mark;
+    try {
+        await connection.query(`DELETE FROM materials WHERE materials.Model = ?`, [mark]);
+        await connection.query(`DELETE FROM work_enviroment WHERE work_enviroment.Model = ?`, [mark]);
+        await connection.query(`DELETE FROM documents WHERE documents.Model = ?`, [mark]);
+        await connection.query(`DELETE FROM operating_conditions WHERE operating_conditions.Model = ?`, [mark]);
+        await connection.query(`DELETE FROM execution WHERE execution.Model = ?`, [mark]);
+        await connection.query(`DELETE FROM Valve_Model WHERE Valve_Model.Model = ?`, [mark]);
+        res.status(200).json({
+            succes: true
+        });
     } catch (error) {
         res.status(404).json(error);
         return;

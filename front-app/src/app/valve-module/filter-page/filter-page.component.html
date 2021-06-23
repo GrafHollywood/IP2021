@@ -1,7 +1,22 @@
 <div class="container">
-  <app-search-valve></app-search-valve>
-  <app-valve-filter (onFilter)="onFilter($event)"></app-valve-filter>
-  <div class="col-md-6 col-sm-12 col-lg-4 my-1" *ngFor="let valve of valveList">
-    <app-valve-card [valve]="valve"></app-valve-card>
+  <div class="m-2">
+    <app-search-valve></app-search-valve>
   </div>
+  <div class="m-2">
+    <app-valve-filter (onFilter)="onFilter($event)"></app-valve-filter>
+  </div>
+
+  <ng-container *ngIf="valveList[0]; else elseTemplate">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 col-lg-4 my-1" *ngFor="let valve of valveList">
+        <app-valve-card [valve]="valve"></app-valve-card>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="text-center">
+      <p class="display-4">Ничего не найдено</p>
+    </div>
+  </ng-template>
+
 </div>

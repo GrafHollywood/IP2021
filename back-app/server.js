@@ -15,7 +15,7 @@ app.use('/api/v1/valve', valveRouter);
 app.use('/api/v1/conditions', conditionsRouter);
 app.use('/api/v1/execution', executionRouter);
 
-app.get('', (req, res) => {
+app.use('', (req, res) => {
     res.sendFile(__dirname + "/view/index.html");
 })
 // обработка ошибки 404

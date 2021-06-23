@@ -31,5 +31,7 @@ export class ValveHttpService {
   public postValve(obj: object) {
     return this.http.post(`${this.url}/valve`, obj).toPromise();
   }
-
+  public deleteValve(mark: string) {
+    return this.http.delete(`${this.url}/valve/${mark}`).toPromise();
+  }
 }

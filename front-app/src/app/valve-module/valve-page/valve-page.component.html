@@ -1,6 +1,10 @@
 <div class="container">
   <ng-container *ngIf="valve && execution; else elseTemplate">
     <div class="row">
+      <div class="col-12 py-3">
+        <button class="btn btn-primary me-3">Редактировать</button>
+        <button class="btn btn-danger" (click)="onDelete()">Удалить</button>
+      </div>
       <main class="col-8">
         <h1 class="display-2">{{valve.Model}}</h1>
         <ul class="list-group list-group-flush">
@@ -14,21 +18,62 @@
         </ul>
       </main>
       <div class="image col-4">
-        <img class="border  rounded-3" src="{{valve.img}}" alt="{{valve.Model}}">
+        <img class="border  rounded-3 h-100" src="{{valve.img}}" alt="{{valve.Model}}">
+      </div>
+      <div class="col-6">
+        <h2 class="display-5">Материалы клапана</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-secondary">
+              <th scope="col">Деталь</th>
+              <th scope="col">Материал</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="valve.Cap_Material">
+              <th>Крышка</th>
+              <th>{{valve.Cap_Material}}</th>
+            </tr>
+            <tr *ngIf="valve.Body_Material">
+              <th>Корпус</th>
+              <th>{{valve.Body_Material}}</th>
+            </tr>
+            <tr *ngIf="valve.OilSeal_Material">
+              <th>Сальник</th>
+              <th>{{valve.OilSeal_Material}}</th>
+            </tr>
+            <tr *ngIf="valve.OilSealPack_Material">
+              <th>Сальниковая набивка</th>
+              <th>{{valve.OilSealPack_Material}}</th>
+            </tr>
+            <tr *ngIf="valve.Spindle_Material">
+              <th>Шпиндель</th>
+              <th>{{valve.Spindle_Material}}</th>
+            </tr>
+            <tr *ngIf="valve.Sealer_Material">
+              <th>Уплотнитель</th>
+              <th>{{valve.Sealer_Material}}</th>
+            </tr>
+            <tr *ngIf="valve.Gasket_Material">
+              <th>Прокладка</th>
+              <th>{{valve.Gasket_Material}}</th>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="col-12">
         <h2 class="display-5">Исполнения клапана</h2>
-        <table class="table table-striped table-hover table-bordered">
+        <table class="table table-bordered table-striped">
           <thead>
-            <tr>
-              <th scope="col">DN</th>
-              <th scope="col">L</th>
-              <th scope="col">H</th>
+            <tr class="table-secondary">
+              <th scope="col">DN, мм</th>
+              <th scope="col">L, мм</th>
+              <th scope="col">H, мм</th>
               <th scope="col">n</th>
-              <th scope="col">d</th>
-              <th scope="col">D1</th>
-              <th scope="col">D2</th>
-              <th scope="col">Масса</th>
+              <th scope="col">d, мм</th>
+              <th scope="col">D1, мм</th>
+              <th scope="col">D2, мм</th>
+              <th scope="col">Масса, кг</th>
               <th scope="col">Тип присоединения</th>
             </tr>
           </thead>
