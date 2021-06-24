@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
 import { AddValveComponent } from './add-valve/add-valve.component';
 import { FilterPageComponent } from './filter-page/filter-page.component';
 import { ValveListComponent } from './valve-list/valve-list.component';
@@ -12,7 +13,8 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: AddValveComponent
+    component: AddValveComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'filter',

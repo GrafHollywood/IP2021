@@ -1,35 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
+
     <a class="navbar-brand nav-link" [routerLink]="'valve'" [routerLinkActive]="'active'"
       [routerLinkActiveOptions]="{exact : true}">Инжененрный проект</a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" [routerLink]="'valve'" [routerLinkActive]="'active'"
-            [routerLinkActiveOptions]="{exact : true}">Клапаны</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" [routerLink]="'valve/filter'" [routerLinkActive]="'active'"
-            [routerLinkActiveOptions]="{exact : true}">Подбор</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Добавить
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" [routerLink]="'valve/add'" [routerLinkActive]="'active'">Марка клапана</a></li>
-            <li><a class="dropdown-item" [routerLink]="'execution/add'" [routerLinkActive]="'active'">
-                Исполнение клапана
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" [routerLink]="'valve'" [routerLinkActive]="'active'"
+          [routerLinkActiveOptions]="{exact : true}">Клапаны</a>
+        <a class="nav-link" aria-current="page" [routerLink]="'valve/filter'" [routerLinkActive]="'active'"
+          [routerLinkActiveOptions]="{exact : true}">Подбор клапана</a>
+        <a class="nav-link" [routerLink]="'valve/add'" [routerLinkActive]="'active'">Добавить марку</a>
+        <a class="nav-link" [routerLink]="'execution/add'" [routerLinkActive]="'active'">Добавить исполнение</a>
+      </div>
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-light me-2" [routerLink]="'login'">Login</button>
+        <button type="button" class="btn btn-outline-light me-2" (click)="signOut()">Sign Out</button>
+      </div>
     </div>
   </div>
 </nav>

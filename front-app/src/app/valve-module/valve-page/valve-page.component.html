@@ -1,11 +1,10 @@
 <div class="container">
   <ng-container *ngIf="valve && execution; else elseTemplate">
     <div class="row">
-      <div class="col-12 py-3">
-        <button class="btn btn-primary me-3">Редактировать</button>
+      <div class="col-12 py-2">
         <button class="btn btn-danger" (click)="onDelete()">Удалить</button>
       </div>
-      <main class="col-8">
+      <main class="col-md-8">
         <h1 class="display-2">{{valve.Model}}</h1>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Материал: {{valve.Main_Material}}</li>
@@ -17,10 +16,13 @@
           <li class="list-group-item">Климатические условия: {{valve.climate_conditions}}</li>
         </ul>
       </main>
-      <div class="image col-4">
+      <div class="image col-md-4">
         <img class="border  rounded-3 h-100" src="{{valve.img}}" alt="{{valve.Model}}">
       </div>
-      <div class="col-6">
+      <div class="col-12 py-3">
+        <button class="btn btn-primary">Редактировать</button>
+      </div>
+      <div class="col-md-6">
         <h2 class="display-5">Материалы клапана</h2>
         <table class="table table-bordered">
           <thead>
@@ -61,20 +63,23 @@
           </tbody>
         </table>
       </div>
+      <div class="col-12 py-2">
+        <button class="btn btn-primary">Редактировать материалы</button>
+      </div>
       <div class="col-12">
         <h2 class="display-5">Исполнения клапана</h2>
         <table class="table table-bordered table-striped">
           <thead>
             <tr class="table-secondary">
-              <th scope="col">DN, мм</th>
-              <th scope="col">L, мм</th>
-              <th scope="col">H, мм</th>
-              <th scope="col">n</th>
-              <th scope="col">d, мм</th>
-              <th scope="col">D1, мм</th>
-              <th scope="col">D2, мм</th>
-              <th scope="col">Масса, кг</th>
-              <th scope="col">Тип присоединения</th>
+              <th>DN, мм</th>
+              <th>L, мм</th>
+              <th>H, мм</th>
+              <th>n</th>
+              <th>d, мм</th>
+              <th>D1, мм</th>
+              <th>D2, мм</th>
+              <th>Масса, кг</th>
+              <th>Тип присоединения</th>
             </tr>
           </thead>
           <tbody>
@@ -91,6 +96,7 @@
             </tr>
           </tbody>
         </table>
+        <button class="btn btn-primary">Редактировать исполнение</button>
       </div>
     </div>
   </ng-container>

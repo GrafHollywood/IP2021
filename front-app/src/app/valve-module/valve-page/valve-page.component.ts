@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Execution } from 'src/app/shared/interfaces/execution.interface';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { ExecutionHttpService } from 'src/app/shared/services/execution-http.service';
 import { ValveFull } from '../../shared/interfaces/valve.interface';
 import { ValveHttpService } from '../../shared/services/valve-http.service';
@@ -14,12 +15,22 @@ export class ValvePageComponent implements OnInit {
   valve!: ValveFull;
   execution!: Execution[];
   mark: string;
-  constructor(private route: ActivatedRoute, private httpValve: ValveHttpService, private httpExecution: ExecutionHttpService, private router: Router) {
+  user;
+  constructor(
+    private route: ActivatedRoute,
+    private httpValve: ValveHttpService,
+    private httpExecution: ExecutionHttpService,
+    private router: Router,
+    private authService: AuthService) {
     this.route.params.subscribe(param => {
       this.mark = param.id;
     });
+    this.getUser();
   }
 
+  async getUser() {
+    this.user = await this.authService.getUser();
+  }
   ngOnInit(): void {
     this.getValve();
     this.getExecution();
@@ -31,7 +42,14 @@ export class ValvePageComponent implements OnInit {
     this.execution = await this.httpExecution.getExecutionByMark(this.mark);
   }
   async onDelete() {
-    await this.httpValve.deleteValve(this.valve.Model);
-    this.router.navigateByUrl('/valve');
+    if (!this.user) {
+      this.router.navigateByUrl('login');
+      return;
+    }
+
+    if (confirm('Вы точно хотите удалить клапан?')) {
+      await this.httpValve.deleteValve(this.valve.Model);
+      this.router.navigateByUrl('/valve');
+    }
   }
 }

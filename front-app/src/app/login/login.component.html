@@ -1,0 +1,19 @@
+<div class="container text-center w-25 py-5">
+  <main class="form-signin">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
+
+      <div class="form-floating">
+        <input type="email" class="form-control" placeholder="name@example.com" formControlName='email'
+          [ngClass]="{'is-valid': loginForm.controls['email'].valid}">
+        <label>Email</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" placeholder="Password" formControlName='password'
+          [ngClass]="{'is-valid': loginForm.controls['password'].valid}">
+        <label>Пароль</label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+    </form>
+  </main>
+</div>
