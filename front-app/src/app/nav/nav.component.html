@@ -2,7 +2,7 @@
   <div class="container">
 
     <a class="navbar-brand nav-link" [routerLink]="'valve'" [routerLinkActive]="'active'"
-      [routerLinkActiveOptions]="{exact : true}">Инжененрный проект</a>
+      [routerLinkActiveOptions]="{exact : true}">Инжененрный проект 2021</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,8 +19,13 @@
         <a class="nav-link" [routerLink]="'execution/add'" [routerLinkActive]="'active'">Добавить исполнение</a>
       </div>
       <div class="text-end">
-        <button type="button" class="btn btn-outline-light me-2" [routerLink]="'login'">Login</button>
-        <button type="button" class="btn btn-outline-light me-2" (click)="signOut()">Sign Out</button>
+        <ng-container *ngIf="user; else elseTemplate">
+          <button type="button" class="btn btn-outline-light me-2" (click)="signOut()">Sign Out</button>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <button type="button" class="btn btn-outline-light me-2" [routerLink]="'login'">Login</button>
+        </ng-template>
+
       </div>
     </div>
   </div>

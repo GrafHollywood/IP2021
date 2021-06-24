@@ -3,6 +3,8 @@
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
 
+      <p class="lead text-danger fw-bold">{{error}}</p>
+
       <div class="form-floating">
         <input type="email" class="form-control" placeholder="name@example.com" formControlName='email'
           [ngClass]="{'is-valid': loginForm.controls['email'].valid}">

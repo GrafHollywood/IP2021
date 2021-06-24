@@ -10,6 +10,7 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  error = '';
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -24,10 +25,9 @@ export class LoginComponent implements OnInit {
     const values = this.loginForm.value;
     try {
       await this.authService.doLoginEmail(values.email, values.password);
-      alert('Вы вошли в учетную запись администратора');
       this.router.navigateByUrl('valve');
     } catch (error) {
-      alert(error.message);
+      this.error = error.message;
     }
   }
 }

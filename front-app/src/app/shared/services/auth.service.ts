@@ -12,6 +12,9 @@ export class AuthService {
   getUser() {
     return this.afAuth.currentUser;
   }
+  changedUser(callback) {
+    this.afAuth.onAuthStateChanged(callback);
+  }
 
   doLoginEmail(email: string, password: string) {
     return firebase.auth().signInWithEmailAndPassword(email, password);

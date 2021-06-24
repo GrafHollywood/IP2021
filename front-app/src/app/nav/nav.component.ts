@@ -8,7 +8,12 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  user = null;
   constructor(private authService: AuthService, private router: Router) {
+    authService.changedUser((user) => {
+      this.user = user;
+      console.log(this.user);
+    })
   }
 
   ngOnInit(): void {
