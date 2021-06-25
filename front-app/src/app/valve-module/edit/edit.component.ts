@@ -32,7 +32,7 @@ export class EditComponent implements OnInit {
     this.getLists();
     //основная информация
     this.valveForm = this.fb.group({
-      mark: [null, [Validators.required, Validators.maxLength(20)]],
+      mark: [{ value: null, disabled: true }, [Validators.required, Validators.maxLength(20)]],
       purpose: [null, [Validators.required, Validators.maxLength(150)]],
       typeDrive: [null, [Validators.required]],
     });

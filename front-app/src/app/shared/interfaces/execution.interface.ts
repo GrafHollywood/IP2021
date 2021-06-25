@@ -1,4 +1,5 @@
 export interface Execution {
+    Model: string,
     D: number,
     L: number,
     H: number,

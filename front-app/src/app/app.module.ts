@@ -15,6 +15,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './login/login.component';
+import { EditExecotionComponent } from './edit-execotion/edit-execotion.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LoginComponent } from './login/login.component';
     FooterComponent,
     AddExecutionComponent,
     LoginComponent,
+    EditExecotionComponent,
   ],
   imports: [
     BrowserModule,

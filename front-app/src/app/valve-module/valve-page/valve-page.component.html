@@ -91,7 +91,7 @@
                 <td class="text-center">{{exec.Weight}}</td>
                 <td class="text-center">{{exec.Type_connect}}</td>
                 <td class="text-center">
-                  <button class="btn btn-secondary m-1">
+                  <button class="btn btn-secondary m-1" (click)="onEditExecution(exec.D)">
                     <i class="bi bi-gear"></i>
                   </button>
                   <button class="btn btn-danger m-1" (click)="onDeleteExecution(exec.D)">

@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="py-4">
+    <h2 class="h1">Редактирование исполнения клапана</h2>
+    <p class="lead">Если Вы хотите добавить новое исполнение клапана, то заполните поля ниже и нажмите кнопку
+      "Добавить".
+      Поля
+      со "звездочкой" являются обязательными.</p>
+  </div>
+  <form [formGroup]="executionForm">
+    <div class="border-bottom py-3">
+      <div class="row">
+        <div class="form-group col-12">
+          <label class="form-label" for="mark">Марка клапана <span class="text-danger">*</span></label>
+          <input class="form-select" id="typeDrive" formControlName="Model">
+        </div>
+      </div>
+    </div>
+    <div class="border-bottom py-3">
+      <h4 class="col-12">Габаритные размеры</h4>
+      <div class="row">
+        <div class="form-group col-4">
+          <label class="form-label" for="purpose">DN <span class="text-danger">*</span></label>
+          <input class="form-control" type="number" id="purpose" formControlName="D" placeholder="DN">
+        </div>
+        <div class="form-group col-4">
+          <label class="form-label" for="purpose">L</label>
+          <input class="form-control" type="number" id="purpose" formControlName="L" placeholder="L">
+        </div>
+        <div class="form-group col-4">
+          <label class="form-label" for="purpose">H</label>
+          <input class="form-control" type="number" id="purpose" formControlName="H" placeholder="H">
+        </div>
+        <div class="form-group col-12">
+          <label class="form-label" for="purpose">Масса<span class="text-danger">*</span></label>
+          <input class="form-control" type="number" id="purpose" formControlName="Weight" placeholder="Масса">
+        </div>
+      </div>
+    </div>
+    <div class="border-bottom py-3">
+      <h4 class="col-12">Присоединение и присоединительные размеры</h4>
+      <div class="row">
+        <div class="form-group col-12">
+          <label class="form-label" for="purpose">Тип присоединения <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" id="purpose" formControlName="Type_connect"
+            placeholder="Тип присоединения">
+        </div>
+        <div class="form-group col-6">
+          <label class="form-label" for="purpose">Кол-во присоединительных отверстий</label>
+          <input class="form-control" type="number" id="purpose" formControlName="n_connect"
+            placeholder="Кол-во присоединительных отверстий">
+        </div>
+        <div class="form-group col-6">
+          <label class="form-label" for="purpose">Диаметр присоединительных отверстий</label>
+          <input class="form-control" type="number" id="purpose" formControlName="d_connect"
+            placeholder="Диаметр присоединительных отверстий">
+        </div>
+        <div class="form-group col-6">
+          <label class="form-label" for="purpose">D1 присоединения</label>
+          <input class="form-control" type="number" id="purpose" formControlName="D1_connect"
+            placeholder="D1 присоединения">
+        </div>
+        <div class="form-group col-6">
+          <label class="form-label" for="purpose">D присоединения</label>
+          <input class="form-control" type="number" id="purpose" formControlName="D2_connect"
+            placeholder="D присоединения">
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-outline-dark my-3" [disabled]="executionForm.invalid"
+      (click)="onEditExecution()">Принять</button>
+  </form>
+</div>

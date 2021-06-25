@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddExecutionComponent } from './add-execution/add-execution.component';
+import { EditExecotionComponent } from './edit-execotion/edit-execotion.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'execution/add',
     component: AddExecutionComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'execution/edit',
+    component: EditExecotionComponent,
     canActivate: [AuthGuard],
   },
 ];

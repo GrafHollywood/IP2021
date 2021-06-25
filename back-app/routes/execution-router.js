@@ -4,6 +4,7 @@ const executionRouter = express.Router();
 const executionController = require('../controllers/execution-controller');
 
 executionRouter.delete('/delete', executionController.deleteExecution);
+executionRouter.put('/edit', executionController.editExecution);
 executionRouter.get('/:mark?', executionController.getExecutionByMark);
 executionRouter.post('/', executionController.postExecution);
 

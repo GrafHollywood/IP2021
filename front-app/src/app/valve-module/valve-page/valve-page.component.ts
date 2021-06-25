@@ -70,4 +70,9 @@ export class ValvePageComponent implements OnInit {
   addExecution() {
     this.router.navigateByUrl('execution/add');
   }
+  onEditExecution(DN: number) {
+    let exec = this.execution[this.execution.findIndex(item => item.D == DN)];
+    exec.Model = this.mark;
+    this.router.navigate(['execution', 'edit'], { queryParams: exec });
+  }
 }

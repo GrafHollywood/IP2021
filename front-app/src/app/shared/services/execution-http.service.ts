@@ -22,7 +22,9 @@ export class ExecutionHttpService {
     const options = { params: params }
     return this.http.delete(`${this.url}/execution/delete`, options).toPromise();
   }
-
+  public updateExecution(execution: Execution) {
+    return this.http.put(`${this.url}/execution/edit`, execution).toPromise();
+  }
   public getExecutionByMark(mark: string): Promise<Execution[]> {
     return this.http.get<Execution[]>(`${this.url}/execution/${mark}`).toPromise();
   }
