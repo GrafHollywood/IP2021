@@ -5,14 +5,13 @@ module.exports = {
     // password: "qwerty123"
 
 
-    host: "localhost",
-    user: "root",
-    database: "engineering_project",
-    password: "qwerty123"
+    // host: "localhost",
+    // user: "root",
+    // database: "engineering_project",
+    // password: "qwerty123"
 
-    // host: 'rc1c-y4x5c9wrnlguhcfr.mdb.yandexcloud.net',
-    // port: 3306,
-    // user: 'matthew',
-    // password: 'crjhgbjy44',
-    // database: 'engineering_project',
+    host: 'eu-cdbr-west-01.cleardb.com',
+    user: 'bd5a6e6d7bb6ed',
+    password: '0d8a303e',
+    database: 'heroku_9e326092b46156b',
 };

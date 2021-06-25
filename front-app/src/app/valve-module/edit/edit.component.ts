@@ -121,6 +121,6 @@ export class EditComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
-    this.router.navigateByUrl(`valve/${values.mark}`);
+    this.router.navigateByUrl(`valve/${this.mark}`);
   }
 }
