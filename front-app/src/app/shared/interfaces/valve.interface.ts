@@ -21,8 +21,10 @@ export interface ValveFull {
     Gasket_Material: string,
     //рабочая среда
     Work_Enviroment: string,
-    t_work_env: string,
-    t_env: string,
+    t_work_env_max: number,
+    t_work_env_min: number,
+    t_env_max: number,
+    t_env_min: number,
     Pressure: number,
     tightness_class: string,
     climate_conditions: string,

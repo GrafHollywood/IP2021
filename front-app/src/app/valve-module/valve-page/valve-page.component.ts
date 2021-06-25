@@ -23,7 +23,7 @@ export class ValvePageComponent implements OnInit {
     private router: Router,
     private authService: AuthService) {
     this.route.params.subscribe(param => {
-      this.mark = param.id;
+      this.mark = param.mark;
     });
     this.getUser();
   }
@@ -52,7 +52,7 @@ export class ValvePageComponent implements OnInit {
     }
 
     if (confirm('Вы точно хотите удалить клапан?')) {
-      await this.httpValve.deleteValve(this.valve.Model);
+      await this.httpValve.deleteValveByMark(this.valve.Model);
       this.router.navigateByUrl('/valve');
     }
   }

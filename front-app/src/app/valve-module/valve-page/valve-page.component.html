@@ -2,7 +2,8 @@
   <ng-container *ngIf="valve && execution; else elseTemplate">
     <div class="row">
       <div class="col-12 py-2">
-        <button class="btn btn-danger" (click)="onDelete()">Удалить</button>
+        <button class="btn btn-danger me-2" (click)="onDelete()">Удалить</button>
+        <button class="btn btn-primary" [routerLink]="'edit'">Редактировать</button>
       </div>
       <main class="col-md-8">
         <h1 class="display-2">{{valve.Model}}</h1>
@@ -17,10 +18,7 @@
         </ul>
       </main>
       <div class="image col-md-4">
-        <img class="border  rounded-3 h-100" src="{{valve.img}}" alt="{{valve.Model}}">
-      </div>
-      <div class="col-12 py-3">
-        <button class="btn btn-primary">Редактировать</button>
+        <img class="border  rounded-3 w-100" src="{{valve.img}}" alt="{{valve.Model}}">
       </div>
       <div class="col-md-6">
         <h2 class="display-5">Материалы клапана</h2>
@@ -63,45 +61,47 @@
           </tbody>
         </table>
       </div>
-      <div class="col-12 py-2">
-        <button class="btn btn-primary">Редактировать материалы</button>
-      </div>
       <div class="col-12">
         <h2 class="display-5">Исполнения клапана</h2>
-        <table class="table table-bordered table-striped table-hover">
-          <thead>
-            <tr class="table-secondary">
-              <th class="text-center">DN, мм</th>
-              <th class="text-center">L, мм</th>
-              <th class="text-center">H, мм</th>
-              <th class="text-center">n</th>
-              <th class="text-center">d, мм</th>
-              <th class="text-center">D1, мм</th>
-              <th class="text-center">D2, мм</th>
-              <th class="text-center">Масса, кг</th>
-              <th class="text-center">Тип присоединения</th>
-              <th class="text-center"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let exec of execution">
-              <th class="text-center">{{exec.D}}</th>
-              <td class="text-center">{{exec.L}}</td>
-              <td class="text-center">{{exec.H}}</td>
-              <td class="text-center">{{exec.n_connect}}</td>
-              <td class="text-center">{{exec.d_connect}}</td>
-              <td class="text-center">{{exec.D1_connect}}</td>
-              <td class="text-center">{{exec.D2_connect}}</td>
-              <td class="text-center">{{exec.Weight}}</td>
-              <td class="text-center">{{exec.Type_connect}}</td>
-              <td class="text-center">
-                <button class="btn btn-danger" (click)="onDeleteExecution(exec.D)">
-                  <i class="bi bi-x-circle"></i>
-                </button></td>
-            </tr>
-          </tbody>
-        </table>
-        <button class="btn btn-primary">Редактировать исполнение</button>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr class="table-secondary">
+                <th class="text-center">DN, мм</th>
+                <th class="text-center">L, мм</th>
+                <th class="text-center">H, мм</th>
+                <th class="text-center">n</th>
+                <th class="text-center">d, мм</th>
+                <th class="text-center">D1, мм</th>
+                <th class="text-center">D2, мм</th>
+                <th class="text-center">Масса, кг</th>
+                <th class="text-center">Тип присоединения</th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let exec of execution">
+                <th class="text-center">{{exec.D}}</th>
+                <td class="text-center">{{exec.L}}</td>
+                <td class="text-center">{{exec.H}}</td>
+                <td class="text-center">{{exec.n_connect}}</td>
+                <td class="text-center">{{exec.d_connect}}</td>
+                <td class="text-center">{{exec.D1_connect}}</td>
+                <td class="text-center">{{exec.D2_connect}}</td>
+                <td class="text-center">{{exec.Weight}}</td>
+                <td class="text-center">{{exec.Type_connect}}</td>
+                <td class="text-center">
+                  <button class="btn btn-secondary m-1">
+                    <i class="bi bi-gear"></i>
+                  </button>
+                  <button class="btn btn-danger m-1" (click)="onDeleteExecution(exec.D)">
+                    <i class="bi bi-x-circle"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </ng-container>

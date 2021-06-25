@@ -124,6 +124,76 @@ exports.deleteValve = async function (req, res) {
     }
 }
 
+// PUT ../valve/:mark
+exports.updateValve = async function (req, res) {
+    const mark = req.params.mark;
+    const values = req.body;
+    try {
+        await connection.query(`UPDATE valve_model SET Purpose=?, Type_drive=? WHERE Model=?`, [values.purpose, values.typeDrive, mark]);
+        await connection.query(`UPDATE materials SET 
+        Main_Material = ?, 
+        Cap_Material = ?, 
+        Body_Material = ?, 
+        OilSeal_Material = ?, 
+        OilSealPack_Material = ?, 
+        Spindle_Material = ?, 
+        Sealer_Material = ?, 
+        Gasket_Material = ? 
+        WHERE Model=?`, [
+            values.mainMaterial,
+            values.capMaterial,
+            values.bodyMaterial,
+            values.oilSealMaterial,
+            values.oilSealPackMaterial,
+            values.spindleMaterial,
+            values.sealerMaterial,
+            values.gasketMaterial,
+            mark
+        ]);
+        await connection.query(`UPDATE work_enviroment SET 
+        Work_Enviroment = ?, 
+        t_work_env_max = ?, 
+        t_work_env_min = ?, 
+        t_env_max = ?, 
+        t_env_min = ?, 
+        Pressure = ? 
+        WHERE Model=?`, [
+            values.workEnv,
+            values.tWorkMax,
+            values.tWorkMin,
+            values.tEnvMax,
+            values.tEnvMin,
+            values.pressure,
+            mark
+        ]);
+        await connection.query(`UPDATE operating_conditions SET 
+        tightness_class = ?, 
+        climate_conditions = ?, 
+        warranty_operation = ?, 
+        warranty_storage = ?, 
+        warranty_time = ?, 
+        conservation = ? 
+        WHERE Model=?`, [
+            values.tightnessClass,
+            values.operatingConditions,
+            values.warrantyOperation,
+            values.warrantyStorage,
+            values.warrantyTime,
+            values.conservation,
+            mark
+        ]);
+
+        await connection.query(`UPDATE documents SET img =? WHERE Model=?`, [values.img, mark]);
+
+        res.status(200).json({
+            succes: true
+        });
+    } catch (error) {
+        res.status(404).json(error);
+        return;
+    }
+}
+
 // POST ../valve/
 exports.addValve = async function (req, res) {
     let requestBody = req.body;

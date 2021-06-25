@@ -11,6 +11,7 @@ import { LoaderComponent } from '../shared/loader/loader.component';
 import { ValveFilterComponent } from './valve-filter/valve-filter.component';
 import { FilterPageComponent } from './filter-page/filter-page.component';
 import { SearchValveComponent } from './search-valve/search-valve.component';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SearchValveComponent } from './search-valve/search-valve.component';
     LoaderComponent,
     ValveFilterComponent,
     FilterPageComponent,
-    SearchValveComponent
+    SearchValveComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
