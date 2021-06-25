@@ -67,4 +67,7 @@ export class ValvePageComponent implements OnInit {
       this.getExecution();
     }
   }
+  addExecution() {
+    this.router.navigateByUrl('execution/add');
+  }
 }
