@@ -1,6 +1,12 @@
 <div class="py-3" [formGroup]='searchForm' (ngSubmit)="onSearch()">
   <form class="d-flex">
-    <input class="form-control me-2" type="search" placeholder="Найти марку" formControlName='mark'>
+    <input class="form-control me-2" type="search" list="valve" placeholder="Найти марку" formControlName='mark'>
+    <datalist id="valve">
+      <option *ngFor="let mark of markList" value="{{mark}}">
+    </datalist>
     <button class="btn btn-outline-dark btn-lg" type="submit">Найти</button>
   </form>
+  <div class="text-center">
+    <p class="display-6">{{error}}</p>
+  </div>
 </div>

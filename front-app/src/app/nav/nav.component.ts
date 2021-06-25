@@ -12,7 +12,6 @@ export class NavComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {
     authService.changedUser((user) => {
       this.user = user;
-      console.log(this.user);
     })
   }
 

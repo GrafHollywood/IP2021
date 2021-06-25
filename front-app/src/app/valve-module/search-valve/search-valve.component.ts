@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ValveShort } from 'src/app/shared/interfaces/valve.interface';
+import { ValveHttpService } from 'src/app/shared/services/valve-http.service';
 
 @Component({
   selector: 'app-search-valve',
@@ -8,14 +11,31 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SearchValveComponent implements OnInit {
   searchForm!: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  markList: string[];
+  error: string;
+  constructor(private fb: FormBuilder, private valveService: ValveHttpService, private router: Router) { }
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       mark: ['', [Validators.required]]
-    })
+    });
+    this.getMarkList();
   }
+
   onSearch() {
-    console.log(23);
+    const mark = this.searchForm.value.mark;
+    if (this.markList.includes(mark)) {
+      this.router.navigateByUrl(`valve/${mark}`);
+    } else {
+      this.error = 'Не найдено'
+    }
+  }
+
+  async getMarkList() {
+    try {
+      this.markList = await this.valveService.getValveList();
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

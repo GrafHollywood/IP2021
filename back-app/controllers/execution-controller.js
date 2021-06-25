@@ -8,7 +8,19 @@ exports.getExecutionByMark = async function (req, res) {
         let results = await connection.query(query, value);
         res.json(results[0]);
     } catch (error) {
-        res.json(error);
+        res.status(404).json(error);
+    }
+}
+
+exports.deleteExecution = async function (req, res) {
+    const queryParam = req.query;
+    try {
+        await connection.query(`DELETE FROM Execution WHERE Execution.Model = ? AND Execution.D = ?`, [queryParam.model, queryParam.DN]);
+        res.status(200).json({
+            succes: true
+        });
+    } catch (error) {
+        res.status(404).json(error);
     }
 }
 

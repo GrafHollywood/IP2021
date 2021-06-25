@@ -1,10 +1,9 @@
-const Valve = require("../models/valve");
 const connection = require("../mode/connection");
 
 
 // GET ../valve
 exports.getValves = async function (req, res) {
-    let query = `SELECT Valve_Model.Model, materials.Main_Material, Work_Enviroment.Pressure, documents.img FROM Valve_Model 
+    let query = `SELECT * FROM Valve_Model 
     JOIN materials ON materials.Model = valve_model.Model
     JOIN Work_Enviroment ON Work_Enviroment.Model = valve_model.Model
     JOIN documents ON documents.Model = valve_model.Model`;

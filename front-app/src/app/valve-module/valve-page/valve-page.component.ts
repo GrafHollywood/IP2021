@@ -28,19 +28,23 @@ export class ValvePageComponent implements OnInit {
     this.getUser();
   }
 
-  async getUser() {
-    this.user = await this.authService.getUser();
-  }
   ngOnInit(): void {
     this.getValve();
     this.getExecution();
   }
+
+  async getUser() {
+    this.user = await this.authService.getUser();
+  }
+
   async getValve() {
     this.valve = await this.httpValve.getValveByMark(this.mark);
   }
+
   async getExecution() {
     this.execution = await this.httpExecution.getExecutionByMark(this.mark);
   }
+
   async onDelete() {
     if (!this.user) {
       this.router.navigateByUrl('login');
@@ -50,6 +54,17 @@ export class ValvePageComponent implements OnInit {
     if (confirm('Вы точно хотите удалить клапан?')) {
       await this.httpValve.deleteValve(this.valve.Model);
       this.router.navigateByUrl('/valve');
+    }
+  }
+  async onDeleteExecution(DN: number) {
+    if (!this.user) {
+      this.router.navigateByUrl('login');
+      return;
+    }
+
+    if (confirm('Вы точно хотите удалить исполнение?')) {
+      await this.httpExecution.deleteExecution(this.valve.Model, DN);
+      this.getExecution();
     }
   }
 }

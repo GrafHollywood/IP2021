@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-6">
         <h2 class="display-5">Материалы клапана</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover ">
           <thead>
             <tr class="table-secondary">
               <th scope="col">Деталь</th>
@@ -33,32 +33,32 @@
           </thead>
           <tbody>
             <tr *ngIf="valve.Cap_Material">
-              <th>Крышка</th>
-              <th>{{valve.Cap_Material}}</th>
+              <td>Крышка</td>
+              <td>{{valve.Cap_Material}}</td>
             </tr>
             <tr *ngIf="valve.Body_Material">
-              <th>Корпус</th>
-              <th>{{valve.Body_Material}}</th>
+              <td>Корпус</td>
+              <td>{{valve.Body_Material}}</td>
             </tr>
             <tr *ngIf="valve.OilSeal_Material">
-              <th>Сальник</th>
-              <th>{{valve.OilSeal_Material}}</th>
+              <td>Сальник</td>
+              <td>{{valve.OilSeal_Material}}</td>
             </tr>
             <tr *ngIf="valve.OilSealPack_Material">
-              <th>Сальниковая набивка</th>
-              <th>{{valve.OilSealPack_Material}}</th>
+              <td>Сальниковая набивка</td>
+              <td>{{valve.OilSealPack_Material}}</td>
             </tr>
             <tr *ngIf="valve.Spindle_Material">
-              <th>Шпиндель</th>
-              <th>{{valve.Spindle_Material}}</th>
+              <td>Шпиндель</td>
+              <td>{{valve.Spindle_Material}}</td>
             </tr>
             <tr *ngIf="valve.Sealer_Material">
-              <th>Уплотнитель</th>
-              <th>{{valve.Sealer_Material}}</th>
+              <td>Уплотнитель</td>
+              <td>{{valve.Sealer_Material}}</td>
             </tr>
             <tr *ngIf="valve.Gasket_Material">
-              <th>Прокладка</th>
-              <th>{{valve.Gasket_Material}}</th>
+              <td>Прокладка</td>
+              <td>{{valve.Gasket_Material}}</td>
             </tr>
           </tbody>
         </table>
@@ -68,31 +68,36 @@
       </div>
       <div class="col-12">
         <h2 class="display-5">Исполнения клапана</h2>
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped table-hover">
           <thead>
             <tr class="table-secondary">
-              <th>DN, мм</th>
-              <th>L, мм</th>
-              <th>H, мм</th>
-              <th>n</th>
-              <th>d, мм</th>
-              <th>D1, мм</th>
-              <th>D2, мм</th>
-              <th>Масса, кг</th>
-              <th>Тип присоединения</th>
+              <th class="text-center">DN, мм</th>
+              <th class="text-center">L, мм</th>
+              <th class="text-center">H, мм</th>
+              <th class="text-center">n</th>
+              <th class="text-center">d, мм</th>
+              <th class="text-center">D1, мм</th>
+              <th class="text-center">D2, мм</th>
+              <th class="text-center">Масса, кг</th>
+              <th class="text-center">Тип присоединения</th>
+              <th class="text-center"></th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let exec of execution">
-              <th scope="row">{{exec.D}}</th>
-              <th>{{exec.L}}</th>
-              <th>{{exec.H}}</th>
-              <th>{{exec.n_connect}}</th>
-              <th>{{exec.d_connect}}</th>
-              <th>{{exec.D1_connect}}</th>
-              <th>{{exec.D2_connect}}</th>
-              <th>{{exec.Weight}}</th>
-              <th>{{exec.Type_connect}}</th>
+              <th class="text-center">{{exec.D}}</th>
+              <td class="text-center">{{exec.L}}</td>
+              <td class="text-center">{{exec.H}}</td>
+              <td class="text-center">{{exec.n_connect}}</td>
+              <td class="text-center">{{exec.d_connect}}</td>
+              <td class="text-center">{{exec.D1_connect}}</td>
+              <td class="text-center">{{exec.D2_connect}}</td>
+              <td class="text-center">{{exec.Weight}}</td>
+              <td class="text-center">{{exec.Type_connect}}</td>
+              <td class="text-center">
+                <button class="btn btn-danger" (click)="onDeleteExecution(exec.D)">
+                  <i class="bi bi-x-circle"></i>
+                </button></td>
             </tr>
           </tbody>
         </table>

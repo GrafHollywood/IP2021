@@ -11,13 +11,15 @@ app.use(express.static(__dirname + "/view"));
 const valveRouter = require('./routes/valve-router'); //для адресов /valve
 const conditionsRouter = require('./routes/conditions-router');
 const executionRouter = require('./routes/execution-router');
+
 app.use('/api/v1/valve', valveRouter);
 app.use('/api/v1/conditions', conditionsRouter);
 app.use('/api/v1/execution', executionRouter);
 
-app.use('', (req, res) => {
-    res.sendFile(__dirname + "/view/index.html");
-})
+// app.use('', (req, res, next) => {
+//     res.sendFile(__dirname + "/view/index.html");
+//     next();
+// })
 // обработка ошибки 404
 app.use(function (req, res, next) {
     res.status(404).send("Not Found")
