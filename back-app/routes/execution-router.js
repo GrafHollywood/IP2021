@@ -5,7 +5,7 @@ const executionController = require('../controllers/execution-controller');
 
 executionRouter.delete('/delete', executionController.deleteExecution);
 executionRouter.put('/edit', executionController.editExecution);
-executionRouter.get('/:mark?', executionController.getExecutionByMark);
+executionRouter.get('/:mark', executionController.getExecutionByMark);
 executionRouter.post('/', executionController.postExecution);
 
 module.exports = executionRouter;
