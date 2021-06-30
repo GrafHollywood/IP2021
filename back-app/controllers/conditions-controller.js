@@ -1,9 +1,6 @@
 const connection = require("../mode/connection");
-const TightnessClass = require('../models/tightnessClass');
 
-/*
-..conditions/tightness
-*/
+/*..conditions/tightness*/
 exports.getTightnessClass = async function (req, res) {
     let results = await connection.query('SELECT Class FROM tightness_class');
     let tightness = [];
@@ -12,10 +9,7 @@ exports.getTightnessClass = async function (req, res) {
     })
     res.json(tightness);
 }
-
-/*
-..conditions/climate
-*/
+/*..conditions/climate*/
 exports.getClimateClass = async function (req, res) {
     let results = await connection.query('SELECT Climate FROM storage_conditions');
     let climate = [];
