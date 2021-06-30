@@ -1,5 +1,5 @@
 const connection = require('../mode/connection');
-// GET .../api/v1/execution/:mark
+
 exports.getExecutionByMark = async function (req, res) {
     let value = [req.params.mark];
     let query = `SELECT D, L, H, Type_connect, n_connect, d_connect, D1_connect, D2_connect, Weight FROM Execution
@@ -8,10 +8,10 @@ exports.getExecutionByMark = async function (req, res) {
         let results = await connection.query(query, value);
         res.json(results[0]);
     } catch (error) {
-        res.status(400).json(error);
+        res.status(404).json(error);
     }
 }
-// DELETE ../api/v1/execution/delete
+
 exports.deleteExecution = async function (req, res) {
     const queryParam = req.query;
     try {
@@ -20,11 +20,9 @@ exports.deleteExecution = async function (req, res) {
             succes: true
         });
     } catch (error) {
-        res.status(400).json(error);
+        res.status(404).json(error);
     }
 }
-
-// PUT ../api/v1/execution/edit
 exports.editExecution = async function (req, res) {
     let requestBody = req.body;
     try {
@@ -52,11 +50,9 @@ exports.editExecution = async function (req, res) {
             succes: true
         });
     } catch (error) {
-        res.status(400).json(error);
+        res.status(404).json(error);
     }
 }
-
-// PUT ../api/v1/execution
 exports.postExecution = async function (req, res) {
     let requestBody = req.body;
     let query = `INSERT into Execution (Execution, Model, D, L, H, Type_connect, n_connect, d_connect, D1_connect, D2_connect, Weight) 
